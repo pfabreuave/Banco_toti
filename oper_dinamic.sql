@@ -1,6 +1,6 @@
 -- operações de conta presentacão dinamic
 
-SELECT t.id_cliente_conta AS "CONTA", 
+SELECT id_cliente_conta AS "CONTA", 
 	   c.nome AS "NOME CLIENTE", 
     	SUM(CASE WHEN id_tipo_transacao = 1 THEN valor ELSE 0 END) AS 'DEPOSITOS',
 		SUM(CASE WHEN id_tipo_transacao = 2 THEN valor ELSE 0 END) AS 'SAQUES',
@@ -11,14 +11,12 @@ SELECT t.id_cliente_conta AS "CONTA",
 		COUNT(*) AS "CANT"
 		
 					  	         
-FROM transacao AS t
-JOIN tipo_transacao AS tt
-	ON (id_tipo_transacao = tt.id) 
+FROM transacao
 
 JOIN cliente AS c
-	ON (t.id_cliente_conta = c.id)
+	ON (id_cliente_conta = c.id)
 
-GROUP BY t.id_cliente_conta
+GROUP BY id_cliente_conta
 	
-ORDER BY t.id_cliente_conta ASC;
+ORDER BY id_cliente_conta ASC;
 	
