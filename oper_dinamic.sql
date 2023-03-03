@@ -6,8 +6,8 @@ SELECT id_cliente_conta AS "CONTA",
 		SUM(CASE WHEN id_tipo_transacao = 2 THEN valor ELSE 0 END) AS 'SAQUES',
 		SUM(CASE WHEN id_tipo_transacao = 3 THEN valor ELSE 0 END) AS 'PAGAR CONTAS',
 		SUM(CASE WHEN id_tipo_transacao = 4 THEN valor ELSE 0 END) AS 'TRANSFERENCIAS',
-		SUM(CASE WHEN id_tipo_transacao = 1 THEN valor
-                      ELSE (-1) * valor END) "SALDO",
+		PRINTF('%.2f', (SUM(CASE WHEN id_tipo_transacao = 1 THEN valor
+                      ELSE (-1) * valor END))) AS "SALDO",
 		COUNT(*) AS "CANT"
 		
 					  	         
